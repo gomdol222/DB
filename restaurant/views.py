@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from .models import Restaurant, Menu, Review, SuggestionBoard
 from django.utils import timezone
+from .forms import MenuForm
 
 def home(request):
     today = timezone.now().date()
@@ -42,4 +43,19 @@ def restaurant_review(request):
         'reviews' : reviews
     }
     return render(request, 'restaurant_review.html', context)
+
+def restaurant_account(request):
+    if request.method == "POST":
+        form = MenuForm(request.POST)
+        if form.is_valid():
+            restaurant_name=form.cleaned_data['restaurant']
+            form.save()
+            return redirect('restaurant:restaurant_account')
+    else:
+        form = MenuForm()
+        
+    return render(request, 'restaurant_account.html', {'form': form})
+
+def home(request):
+    return render(request, 'base.html')
 
