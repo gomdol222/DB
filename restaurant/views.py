@@ -1,14 +1,7 @@
-<<<<<<< HEAD
 from django.shortcuts import redirect, render
 from .models import Restaurant, Menu, Review, SuggestionBoard
 from django.utils import timezone
 from .forms import MenuForm
-=======
-from django.shortcuts import render, redirect
-from .models import Restaurant, Menu, Review
-from django.utils import timezone
-from restaurant.forms import RatingForm
->>>>>>> 7fd5729fa904a0178253a53233762097ed5a7c93
 
 def home(request):
     today = timezone.now().date()
