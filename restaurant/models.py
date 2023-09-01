@@ -22,12 +22,6 @@ class Menu(models.Model):
         return self.menu_name
     
 
-class Review(models.Model):
-    id = models.AutoField(primary_key=True)
-    menu = models.ForeignKey(Menu, on_delete=models.CASCADE)
-    review_text = models.TextField()
-    created_at = models.DateTimeField(default=timezone.now)
-
 class SuggestionBoard(models.Model):
     id = models.AutoField(primary_key=True)
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
